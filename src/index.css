@@ -41,7 +41,7 @@ body {
 }
 
 .btn:focus {
-    outline: none;
+    outline: saddlebrown;
 }
 
 .btn:active {
@@ -58,6 +58,21 @@ body {
     margin: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    /* Sets this selector to be able to perform animated transitions. Must specify the property to be transitioned, time it takes
+    until it finishes transitioning, and the type of transition.  */
+    transition: transform 0.2s ease-out, margin-top 0.2s ease-out, margin-bottom 0.2s ease-out, background-color 0.8s ease-out;
+}
+
+
+/* When the user hovers over any element with a task class, all properties that were included in a transition property in the original class
+will start to transition to their new state that is specified here. */
+
+.task:hover {
+    /* transforms elements  to have a size of 1.05 times their original size */
+    transform: scale(1.05);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: lightgreen;
 }
 
 .task.reminder {
@@ -94,14 +109,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 5%;
 }
 
 .form-control-check label {
-    flex: 1;
+    flex: 3;
 }
 
 .form-control-check input {
-    flex: 2;
+    flex: 1;
     height: 20px;
 }
 
