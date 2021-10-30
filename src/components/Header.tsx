@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes  from 'prop-types';
-import Button from './Button';
+import Button from './Button'
+import { useLocation } from 'react-router-dom';
 
 const Header = ({showForm, title, onClick}: any) => {
+
+  // Allows us to identify what path we are currently in.
+  const location = useLocation()
 
   return (
     <header className='header'>
       <h1>{title}</h1>
-      <Button text={showForm ? 'Close Form' : 'Open Form'} color={showForm ? 'red' : 'green'} onClick={onClick} />
+      
+      {/* By using the useLocation hook, we can use location.pathname to figure out which path we are in 
+       then conditionally display components. In this example, if we are in the root page, we want to display the 'Open Form/Close Form'
+       component. If not, we hide it. */}
+
+      {location.pathname === '/' ? <Button text={showForm ? 'Close Form' : 'Open Form'} color={showForm ? 'red' : 'green'} onClick={onClick} /> : ''}
     </header>
   )
 }
@@ -22,7 +31,6 @@ Header.defaultProps = {
 Header.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
-  buttonDesc: PropTypes.string,
   showForm: PropTypes.bool
 }
 

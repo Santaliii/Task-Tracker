@@ -44,6 +44,7 @@ const AddTask = ({onAdd}: any) => {
         <label>Set Reminder</label>
           <input 
             type="checkbox"
+            value={`${reminder}`}
             onChange={(event: any) => setReminder(event.currentTarget.checked) } />
       </div>
       {/* Buttons to submit and clear the form respectively */}
