@@ -17,8 +17,8 @@ Clone this repo
 
 After successfully cloning, run the following commands
 
-`` npm install ``, to install dependencies
-`` npm start ``, to run the app on your local machine
+`` npm install ``, to install essential dependencies <br>
+`` npm start ``, to run the app on your local machine <br>
 and in another terminal, `` npm run server `` to run the json-server backend/database (uses port 5000, make sure nothing is using that port)
 
 And you're done!
