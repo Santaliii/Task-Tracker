@@ -1,12 +1,18 @@
 import React from 'react';
-import PropTypes  from 'prop-types';
 import Button from './Button'
 import { useLocation } from 'react-router-dom';
 
-const Header = ({showForm, title, onClick}: any) => {
+interface IHeaderProps {
+  showForm: boolean,
+  title: string,
+  onClick: () => any
+}
+
+const Header: React.FC<IHeaderProps> = ({showForm, title, onClick}: IHeaderProps) => {
 
   // Allows us to identify what path we are currently in.
   const location = useLocation()
+  
 
   return (
     <header className='header'>
@@ -25,13 +31,6 @@ const Header = ({showForm, title, onClick}: any) => {
 Header.defaultProps = {
   title: 'Task Tracker',
   showForm: false
-}
-
-// Property types, must be strictly followed when passing them from other components.
-Header.propTypes = {
-  title: PropTypes.string,
-  onClick: PropTypes.func,
-  showForm: PropTypes.bool
 }
 
 export default Header

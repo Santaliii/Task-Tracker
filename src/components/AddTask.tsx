@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 
 
+interface IAddTaskProps {
+  onAdd: (taskDesc: string, date: string, reminder: boolean) => void
+}
 
-const AddTask = ({onAdd}: any) => {
+const AddTask: React.FC<IAddTaskProps> = ({onAdd}: IAddTaskProps) => {
 
   // States of inputs in the form.
-  const [taskDesc, setTaskDesc] = useState('')
-  const [date, setDate] = useState('')
-  const [reminder, setReminder] = useState(false)
+  const [taskDesc, setTaskDesc] = useState<string>('')
+  const [date, setDate] = useState<string>('')
+  const [reminder, setReminder] = useState<boolean>(false)
 
   
   const onSubmit = (e: any) => {

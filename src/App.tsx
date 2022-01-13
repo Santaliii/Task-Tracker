@@ -8,21 +8,24 @@ import About from './components/About'
 
 
 
-const App = () => {
+const App: React.FC = () => {
 
   // Default state of the form.
-  const [showForm, setShowForm] = useState(false)
-
+  const [showForm, setShowForm] = useState<boolean>(false)
+ 
   // Default state of tasks, tasks and their properties change during runtime.
-  const [tasks, setTasks] = useState([{} as any])
+  const [tasks, setTasks] = useState([{} as {text: string, day: string, reminder: boolean, id: number}])
 
+
+    // useEffect hook that fetches our tasks from the server each time we re-render the page.
     useEffect(() => {
+
       const getTasks = async () => {
         const tasksFromServer = await fetchTasks()
         setTasks(tasksFromServer)
       }
-
       getTasks()
+
     }, [])
 
 
@@ -36,7 +39,7 @@ const App = () => {
       return data
     }
 
-    // Fetch a single task based using its ID
+    // Fetch a single task using its ID
     const fetchTask = async (id: number) => {
       const res = await fetch(`http://localhost:5000/tasks/${id}`)
       const data = await res.json()
@@ -58,7 +61,6 @@ const App = () => {
       })
 
       const data = await res.json()
-
       setTasks([...tasks, data])
 
     }
@@ -103,20 +105,26 @@ const App = () => {
     <Router>
       <div className="container">
 
-        <Header showForm={showForm} title="Task Tracker" onClick={() => setShowForm(!showForm)} />
+        <Header showForm={showForm} 
+        title="TASK TRACKER" 
+        onClick={() => setShowForm(!showForm)} />
         
-        <Route path='/' exact render={(props) => (
+        <Route path='/' 
+        exact 
+        render={() => (
           
           <>
             {/* Checks state of showForm. If true, shows the form component. Else, shows nothing */}
             {showForm ? <AddTask onAdd={addTask} /> : ''}
             {/* If the tasks array has elements, display them. If not, print feedback message */}
-            {tasks.length > 0 ? <Tasks onToggle={toggleReminder} onDelete={deleteTask} tasks={tasks}/> : 'No Tasks To Show'}
+            {tasks.length > 0 ? 
+            <Tasks onToggle={toggleReminder} onDelete={deleteTask} tasks={tasks}/> 
+            : 'No Tasks To Show'}
           </>
 
         )} />
 
-        <Route path='/about' component={About} />
+        <Route path="/about" component={About} />
         <Footer />
 
       </div>

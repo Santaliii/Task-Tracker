@@ -1,10 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Button = (props: any) => {
+interface IButtonProps {
+  text: string,
+  color: string,
+  // onClick function is optional for a button.
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+}
+
+const Button: React.FC<IButtonProps> = ({text, color, onClick}: IButtonProps) => {
   return (
     <div>
-      <button onClick={props.onClick} style={{ backgroundColor: props.color }} className="btn">{props.text}</button>
+      <button onClick={onClick} style={{ backgroundColor: color }} className="btn">{text}</button>
     </div>
   )
 }
@@ -12,12 +18,6 @@ const Button = (props: any) => {
 Button.defaultProps = {
   color: 'steelblue',
   text: 'ADD'
-}
-
-Button.propTypes = {
-  text: PropTypes.string,
-  color: PropTypes.string,
-  onClick: PropTypes.func
 }
 
 export default Button
