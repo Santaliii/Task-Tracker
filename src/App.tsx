@@ -6,6 +6,12 @@ import AddTask from './components/AddTask'
 import Footer from './components/Footer'
 import About from './components/About'
 
+interface ITask {
+  text: string,
+  day: string,
+  reminder: boolean,
+  id: number
+}
 
 
 const App: React.FC = () => {
@@ -14,7 +20,7 @@ const App: React.FC = () => {
   const [showForm, setShowForm] = useState<boolean>(false)
  
   // Default state of tasks, tasks and their properties change during runtime.
-  const [tasks, setTasks] = useState([{} as {text: string, day: string, reminder: boolean, id: number}])
+  const [tasks, setTasks] = useState<ITask[]>([])
 
 
     // useEffect hook that fetches our tasks from the server each time we re-render the page.
